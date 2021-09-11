@@ -24,7 +24,13 @@ final class S3ServiceDefaultImplementation implements S3Service {
         var contents = request.contents().orElseThrow(() -> new InvalidPutRequestException("Missing contents"));
 
         try {
-            s3Client.putObject(PutObjectRequest.builder().bucket(bucket).key(key).contentType(request.contentType().code()).build(), fromString(contents));
+            s3Client.putObject(PutObjectRequest.builder()
+                    .bucket(bucket)
+                    .key(key)
+                    .contentType(request.contentType().code())
+                    .contentLength(request.contentLength())
+                    .build(), fromString(contents));
+
         } catch (S3Exception exception) {
             throw new AWSException("Error when calling S3 service", exception);
         }

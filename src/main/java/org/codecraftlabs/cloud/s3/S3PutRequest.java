@@ -12,11 +12,13 @@ public class S3PutRequest {
     private final String key;
     private final String contents;
     private final ContentType contentType;
+    private final long contentLength;
 
     public S3PutRequest(String bucket, String key, String contents) {
         this.bucket = bucket;
         this.key = key;
         this.contents = contents;
+        this.contentLength = contents.getBytes().length;
         this.contentType = TEXT_PLAIN;
     }
 
@@ -25,6 +27,7 @@ public class S3PutRequest {
         this.key = key;
         this.contents = contents;
         this.contentType = contentType;
+        this.contentLength = contents.getBytes().length;
     }
 
     public Optional<String> bucket() {
@@ -41,6 +44,10 @@ public class S3PutRequest {
 
     public ContentType contentType() {
         return contentType;
+    }
+
+    public long contentLength() {
+        return contentLength;
     }
 
     @Override
