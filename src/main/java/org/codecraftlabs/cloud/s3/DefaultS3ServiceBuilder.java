@@ -20,7 +20,7 @@ final class DefaultS3ServiceBuilder implements S3ServiceBuilder {
     }
 
     @Override
-    public S3ServiceDefaultImplementation build() {
+    public S3Service build() {
         return new S3ServiceDefaultImplementation(awsRegion);
     }
 }
