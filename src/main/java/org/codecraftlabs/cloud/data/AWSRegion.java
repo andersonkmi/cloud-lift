@@ -19,13 +19,14 @@ public enum AWSRegion {
     EU_WEST_3("eu-west-3", "Europe (Paris)", Region.EU_WEST_3),
     EU_NORTH_1("eu-north-1", "Europe (Stockholm)", Region.EU_NORTH_1),
     EU_CENTRAL_1("eu-central-1", "Europe (Frankfurt)", Region.EU_CENTRAL_1),
-    ME_SOUTH_1("ap-south-1", "Middle East (Bahrain)", Region.ME_SOUTH_1),
+    ME_SOUTH_1("me-south-1", "Middle East (Bahrain)", Region.ME_SOUTH_1),
     CA_CENTRAL_1("ca-central-1", "Canada (Central)", Region.CA_CENTRAL_1),
     SA_EAST_1("sa-east-1", "South America (Sao Paulo)", Region.SA_EAST_1),
-    US_WEST_1(" us-west-1", "US West (N. California)", Region.US_WEST_1),
-    US_WEST_2(" us-west-2", "US West (Oregon)", Region.US_WEST_2),
+    US_WEST_1("us-west-1", "US West (N. California)", Region.US_WEST_1),
+    US_WEST_2("us-west-2", "US West (Oregon)", Region.US_WEST_2),
     US_EAST_2("us-east-2", "US East (Ohio)", Region.US_EAST_2),
-    US_EAST_1("us-east-1", "US East (N. Virginia)", Region.US_EAST_1);
+    US_EAST_1("us-east-1", "US East (N. Virginia)", Region.US_EAST_1),
+    AF_SOUTH_1("af-south-1", "Africa (Cape Town)", Region.AF_SOUTH_1);
 
     private final String code;
     private final String description;
