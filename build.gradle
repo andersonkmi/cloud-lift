@@ -53,7 +53,7 @@ version = '1.0.0'
 publishing {
     publications {
         maven(MavenPublication) {
-            artifactId = 'cloud-lift' as Publication
+            artifactId = 'cloud-lift'
             from components.java
         }
     }
