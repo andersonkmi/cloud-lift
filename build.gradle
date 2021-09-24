@@ -26,7 +26,7 @@ repositories {
 
 dependencies {
     // Use JUnit Jupiter for testing.
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.0'
     testImplementation 'org.hamcrest:hamcrest-all:1.3'
 
 
@@ -37,8 +37,8 @@ dependencies {
     implementation 'com.google.guava:guava:30.1.1-jre'
 
     // AWS related
-    implementation 'software.amazon.awssdk:s3:2.17.34'
-    implementation 'software.amazon.awssdk:sqs:2.17.34'
+    implementation 'software.amazon.awssdk:s3:2.17.40'
+    implementation 'software.amazon.awssdk:sqs:2.17.40'
 }
 
 tasks.named('test') {
