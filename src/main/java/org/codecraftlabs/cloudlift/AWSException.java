@@ -1,4 +1,4 @@
-package org.codecraftlabs.cloud;
+package org.codecraftlabs.cloudlift;
 
 public class AWSException extends Exception {
     public AWSException(String message) {

@@ -1,4 +1,4 @@
-package org.codecraftlabs.cloud.s3;
+package org.codecraftlabs.cloudlift.s3;
 
 public class InvalidPutRequestException extends Exception {
     public InvalidPutRequestException(String message) {

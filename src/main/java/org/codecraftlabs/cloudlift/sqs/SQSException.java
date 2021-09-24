@@ -1,4 +1,4 @@
-package org.codecraftlabs.cloud.sqs;
+package org.codecraftlabs.cloudlift.sqs;
 
 public class SQSException extends Exception {
     public SQSException(String message) {

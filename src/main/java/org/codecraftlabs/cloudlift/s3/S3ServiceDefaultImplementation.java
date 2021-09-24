@@ -1,7 +1,7 @@
-package org.codecraftlabs.cloud.s3;
+package org.codecraftlabs.cloudlift.s3;
 
-import org.codecraftlabs.cloud.AWSException;
-import org.codecraftlabs.cloud.data.AWSRegion;
+import org.codecraftlabs.cloudlift.AWSException;
+import org.codecraftlabs.cloudlift.data.AWSRegion;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.S3Exception;

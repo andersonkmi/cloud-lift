@@ -1,11 +1,11 @@
-package org.codecraftlabs.cloud.s3;
+package org.codecraftlabs.cloudlift.s3;
 
-import org.codecraftlabs.cloud.data.ContentType;
+import org.codecraftlabs.cloudlift.data.ContentType;
 
 import java.util.Objects;
 import java.util.Optional;
 
-import static org.codecraftlabs.cloud.data.ContentType.TEXT_PLAIN;
+import static org.codecraftlabs.cloudlift.data.ContentType.TEXT_PLAIN;
 
 public class S3PutRequest {
     private final String bucket;

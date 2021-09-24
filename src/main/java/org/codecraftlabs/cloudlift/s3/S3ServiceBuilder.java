@@ -1,6 +1,6 @@
-package org.codecraftlabs.cloud.s3;
+package org.codecraftlabs.cloudlift.s3;
 
-import org.codecraftlabs.cloud.data.AWSRegion;
+import org.codecraftlabs.cloudlift.data.AWSRegion;
 
 public interface S3ServiceBuilder {
     S3ServiceBuilder region(AWSRegion awsRegion);
