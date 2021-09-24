@@ -46,8 +46,8 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-group = 'org.codecraftlabs.cloud'
-version = '1.0.0'
+group = 'org.codecraftlabs.cloudlift'
+version = '1.0.1'
 
 
 publishing {
