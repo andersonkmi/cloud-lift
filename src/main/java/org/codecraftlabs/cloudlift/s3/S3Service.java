@@ -1,6 +1,6 @@
-package org.codecraftlabs.cloud.s3;
+package org.codecraftlabs.cloudlift.s3;
 
-import org.codecraftlabs.cloud.AWSException;
+import org.codecraftlabs.cloudlift.AWSException;
 
 import javax.annotation.Nonnull;
 import java.util.Set;

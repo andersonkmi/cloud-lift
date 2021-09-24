@@ -1,6 +1,6 @@
-package org.codecraftlabs.cloud.sqs;
+package org.codecraftlabs.cloudlift.sqs;
 
-import org.codecraftlabs.cloud.data.AWSRegion;
+import org.codecraftlabs.cloudlift.data.AWSRegion;
 import software.amazon.awssdk.services.sqs.SqsClient;
 import software.amazon.awssdk.services.sqs.model.SendMessageRequest;
 import software.amazon.awssdk.services.sqs.model.SqsException;

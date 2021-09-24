@@ -1,8 +1,8 @@
-package org.codecraftlabs.cloud.s3;
+package org.codecraftlabs.cloudlift.s3;
 
-import org.codecraftlabs.cloud.data.AWSRegion;
+import org.codecraftlabs.cloudlift.data.AWSRegion;
 
-import static org.codecraftlabs.cloud.data.AWSRegion.US_EAST_1;
+import static org.codecraftlabs.cloudlift.data.AWSRegion.US_EAST_1;
 
 final class DefaultS3ServiceBuilder implements S3ServiceBuilder {
     private AWSRegion awsRegion = US_EAST_1;

@@ -1,4 +1,4 @@
-package org.codecraftlabs.cloud.data;
+package org.codecraftlabs.cloudlift.data;
 
 import software.amazon.awssdk.regions.Region;
 

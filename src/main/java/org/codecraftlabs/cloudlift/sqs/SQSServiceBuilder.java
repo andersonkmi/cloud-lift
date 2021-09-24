@@ -1,6 +1,6 @@
-package org.codecraftlabs.cloud.sqs;
+package org.codecraftlabs.cloudlift.sqs;
 
-import org.codecraftlabs.cloud.data.AWSRegion;
+import org.codecraftlabs.cloudlift.data.AWSRegion;
 
 public interface SQSServiceBuilder {
     SQSServiceBuilder region(AWSRegion awsRegion);
