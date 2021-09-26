@@ -65,15 +65,10 @@ final class S3ServiceDefaultImplementation implements S3Service {
             var result = new S3GetResponse();
             var s3ObjectResponse = response.response();
             result.setContentType(s3ObjectResponse.contentType());
-            var reader = new BufferedReader(new InputStreamReader(response));
-            var buffer = new StringBuilder();
             try {
-                result.setRawData(response.readAllBytes());
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    buffer.append(line);
-                }
-                result.setData(buffer.toString());
+                var rawData = response.readAllBytes();
+                result.setRawData(rawData);
+                result.setData(new String(rawData));
             } catch (IOException exception) {
                 throw new AWSException("Failed to read S3 object contents", exception);
             }
