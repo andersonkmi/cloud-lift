@@ -65,7 +65,7 @@ public class S3PutRequest {
             return false;
         }
 
-        var instance = (S3PutRequest) other;
+        S3PutRequest instance = (S3PutRequest) other;
 
         return Objects.equals(bucket, instance.bucket) &&
                Objects.equals(key, instance.key) &&

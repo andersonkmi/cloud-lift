@@ -2,8 +2,10 @@ package org.codecraftlabs.cloudlift.s3;
 
 import org.codecraftlabs.cloudlift.AWSException;
 import org.codecraftlabs.cloudlift.data.AWSRegion;
+import software.amazon.awssdk.core.ResponseInputStream;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
+import software.amazon.awssdk.services.s3.model.GetObjectResponse;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.S3Exception;
 
@@ -55,16 +57,16 @@ final class S3ServiceDefaultImplementation implements S3Service {
         var key = request.key().orElseThrow(() -> new InvalidGetRequestException("Missing key"));
 
         try {
-            var response = s3Client.getObject(GetObjectRequest.builder()
+            ResponseInputStream<GetObjectResponse> response = s3Client.getObject(GetObjectRequest.builder()
                     .bucket(bucket)
                     .key(key)
                     .build());
 
-            var result = new S3GetResponse();
-            var s3ObjectResponse = response.response();
+            S3GetResponse result = new S3GetResponse();
+            GetObjectResponse s3ObjectResponse = response.response();
             result.setContentType(s3ObjectResponse.contentType());
             try {
-                var rawData = response.readAllBytes();
+                byte[] rawData = response.readAllBytes();
                 result.setRawData(rawData);
                 result.setData(new String(rawData));
             } catch (IOException exception) {
