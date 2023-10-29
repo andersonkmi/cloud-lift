@@ -8,6 +8,7 @@ import software.amazon.awssdk.services.sqs.model.Message;
 import software.amazon.awssdk.services.sqs.model.ReceiveMessageRequest;
 import software.amazon.awssdk.services.sqs.model.ReceiveMessageResponse;
 import software.amazon.awssdk.services.sqs.model.SendMessageRequest;
+import software.amazon.awssdk.services.sqs.model.SendMessageResponse;
 import software.amazon.awssdk.services.sqs.model.SqsException;
 
 import javax.annotation.Nonnull;
@@ -33,11 +34,11 @@ final class SQSDefaultServiceImplementation implements SQSService {
     @Nonnull
     public String sendMessage(@Nonnull String url, @Nonnull String contents) throws SQSException {
         try {
-            var request = SendMessageRequest.builder()
+            SendMessageRequest request = SendMessageRequest.builder()
                     .queueUrl(url)
                     .messageBody(contents)
                     .build();
-            var response = sqsClient.sendMessage(request);
+            SendMessageResponse response = sqsClient.sendMessage(request);
             return response.messageId();
         } catch (SqsException exception) {
             throw new SQSException("Error when sending a message to SQS", exception);

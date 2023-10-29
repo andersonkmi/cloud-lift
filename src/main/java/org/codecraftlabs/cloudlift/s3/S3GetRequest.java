@@ -35,7 +35,7 @@ public class S3GetRequest {
             return false;
         }
 
-        var instance = (S3GetRequest) other;
+        S3GetRequest instance = (S3GetRequest) other;
 
         return Objects.equals(bucket, instance.bucket) &&
                 Objects.equals(key, instance.key);
