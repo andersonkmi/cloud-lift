@@ -24,9 +24,9 @@ final class S3ServiceDefaultImplementation implements S3Service {
     }
 
     public void putObject(@Nonnull S3PutRequest request) throws AWSException, InvalidPutRequestException {
-        var bucket = request.bucket().orElseThrow(() -> new InvalidPutRequestException("Missing bucket"));
-        var key = request.key().orElseThrow(() -> new InvalidPutRequestException("Missing key"));
-        var contents = request.contents().orElseThrow(() -> new InvalidPutRequestException("Missing contents"));
+        String bucket = request.bucket().orElseThrow(() -> new InvalidPutRequestException("Missing bucket"));
+        String key = request.key().orElseThrow(() -> new InvalidPutRequestException("Missing key"));
+        String contents = request.contents().orElseThrow(() -> new InvalidPutRequestException("Missing contents"));
 
         try {
             s3Client.putObject(PutObjectRequest.builder()
@@ -46,15 +46,15 @@ final class S3ServiceDefaultImplementation implements S3Service {
             return;
         }
 
-        for (var item : requests) {
+        for (S3PutRequest item : requests) {
             putObject(item);
         }
     }
 
     @Nonnull
     public Optional<S3GetResponse> getObject(@Nonnull S3GetRequest request) throws AWSException, InvalidGetRequestException {
-        var bucket = request.bucket().orElseThrow(() -> new InvalidGetRequestException("Missing bucket"));
-        var key = request.key().orElseThrow(() -> new InvalidGetRequestException("Missing key"));
+        String bucket = request.bucket().orElseThrow(() -> new InvalidGetRequestException("Missing bucket"));
+        String key = request.key().orElseThrow(() -> new InvalidGetRequestException("Missing key"));
 
         try {
             ResponseInputStream<GetObjectResponse> response = s3Client.getObject(GetObjectRequest.builder()
