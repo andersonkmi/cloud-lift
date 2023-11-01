@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
+import java.util.Optional;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,7 +34,7 @@ public class SQSServiceTest {
     void receiveMessageOk() throws SQSException {
         SQSService sqsService = SQSService.builder().build();
 
-        var messages = sqsService.receiveMessages(SQS_QUEUE_URL, 20);
+        Optional<Set<SQSMessage>> messages = sqsService.receiveMessages(SQS_QUEUE_URL, 20);
         assertThat(messages).isPresent();
         message = messages.get().iterator().next();
         assertThat(message.body()).isNotNull().isNotBlank();

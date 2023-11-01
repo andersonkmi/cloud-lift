@@ -36,7 +36,7 @@ public class AWSRegionTests {
             "AF_SOUTH_1, af-south-1"
     })
     public void validateRegionItems(String entry, String code) {
-        var value = AWSRegion.valueOf(entry);
+        AWSRegion value = AWSRegion.valueOf(entry);
         assertThat(value.code(), is(code));
         assertDoesNotThrow(() -> Region.of(entry));
     }
