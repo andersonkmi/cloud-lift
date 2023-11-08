@@ -1,11 +1,7 @@
 package org.codecraftlabs.cloudlift.s3;
 
-public class InvalidPutRequestException extends Exception {
+public class InvalidPutRequestException extends RuntimeException {
     public InvalidPutRequestException(String message) {
         super(message);
-    }
-
-    public InvalidPutRequestException(String message, Throwable exception) {
-        super(message, exception);
     }
 }
