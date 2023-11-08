@@ -32,7 +32,7 @@ final class SQSDefaultServiceImplementation implements SQSService {
 
     @Override
     @Nonnull
-    public String sendMessage(@Nonnull String url, @Nonnull String contents) throws SQSException {
+    public String sendMessage(@Nonnull String url, @Nonnull String contents) {
         try {
             SendMessageRequest request = SendMessageRequest.builder()
                     .queueUrl(url)
@@ -47,14 +47,18 @@ final class SQSDefaultServiceImplementation implements SQSService {
 
     @Nonnull
     @Override
-    public Optional<Set<SQSMessage>> receiveMessages(@Nonnull String url, int waitingTimeInSeconds) throws SQSException {
+    public Optional<Set<SQSMessage>> receiveMessages(@Nonnull String url, int waitingTimeInSeconds) {
         try {
             ReceiveMessageRequest request = ReceiveMessageRequest.builder().queueUrl(url).waitTimeSeconds(waitingTimeInSeconds).build();
             ReceiveMessageResponse response = sqsClient.receiveMessage(request);
             if (! response.hasMessages()) {
                 return Optional.empty();
             }
-            Set<SQSMessage> sqsMessages = response.messages().stream().map(SQSDefaultServiceImplementation::convert).collect(Collectors.toSet());
+            Set<SQSMessage> sqsMessages = response.messages()
+                    .stream()
+                    .map(SQSDefaultServiceImplementation::convert)
+                    .collect(Collectors.toSet());
+
             return Optional.of(sqsMessages);
         } catch (SqsException exception) {
             throw new SQSException("Error when retrieving messages from SQS", exception);
@@ -63,12 +67,12 @@ final class SQSDefaultServiceImplementation implements SQSService {
 
     @Nonnull
     @Override
-    public Optional<Set<SQSMessage>> receiveMessages(@Nonnull String url) throws SQSException {
+    public Optional<Set<SQSMessage>> receiveMessages(@Nonnull String url) {
         return receiveMessages(url, DEFAULT_WAIT_TIME_SECONDS);
     }
 
     @Override
-    public void deleteMessages(@Nonnull String url, @Nonnull Set<SQSMessage> messages) throws SQSException {
+    public void deleteMessages(@Nonnull String url, @Nonnull Set<SQSMessage> messages) {
         try {
             DeleteMessageBatchRequest request = createDeleteMessageBatchRequest(url, messages);
             sqsClient.deleteMessageBatch(request);
@@ -81,7 +85,10 @@ final class SQSDefaultServiceImplementation implements SQSService {
     private DeleteMessageBatchRequest createDeleteMessageBatchRequest(@Nonnull String url, @Nonnull Set<SQSMessage> messages) {
         List<DeleteMessageBatchRequestEntry> deleteMessageBatchRequestEntries = new ArrayList<>();
         for(SQSMessage message : messages) {
-            DeleteMessageBatchRequestEntry deleteMessageBatchRequestEntry = DeleteMessageBatchRequestEntry.builder().id(message.id()).receiptHandle(message.receiptHandle()).build();
+            DeleteMessageBatchRequestEntry deleteMessageBatchRequestEntry = DeleteMessageBatchRequestEntry.builder()
+                    .id(message.id())
+                    .receiptHandle(message.receiptHandle())
+                    .build();
             deleteMessageBatchRequestEntries.add(deleteMessageBatchRequestEntry);
         }
 

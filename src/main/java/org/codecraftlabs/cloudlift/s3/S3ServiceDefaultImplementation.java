@@ -23,7 +23,7 @@ final class S3ServiceDefaultImplementation implements S3Service {
         this.s3Client = S3Client.builder().region(awsRegion.region()).build();
     }
 
-    public void putObject(@Nonnull S3PutRequest request) throws AWSException, InvalidPutRequestException {
+    public void putObject(@Nonnull S3PutRequest request) {
         String bucket = request.bucket().orElseThrow(() -> new InvalidPutRequestException("Missing bucket"));
         String key = request.key().orElseThrow(() -> new InvalidPutRequestException("Missing key"));
         String contents = request.contents().orElseThrow(() -> new InvalidPutRequestException("Missing contents"));
@@ -41,7 +41,7 @@ final class S3ServiceDefaultImplementation implements S3Service {
         }
     }
 
-    public void putObjects(@Nonnull Set<S3PutRequest> requests) throws AWSException, InvalidPutRequestException {
+    public void putObjects(@Nonnull Set<S3PutRequest> requests) {
         if (requests.isEmpty()) {
             return;
         }
@@ -52,7 +52,7 @@ final class S3ServiceDefaultImplementation implements S3Service {
     }
 
     @Nonnull
-    public Optional<S3GetResponse> getObject(@Nonnull S3GetRequest request) throws AWSException, InvalidGetRequestException {
+    public Optional<S3GetResponse> getObject(@Nonnull S3GetRequest request) {
         String bucket = request.bucket().orElseThrow(() -> new InvalidGetRequestException("Missing bucket"));
         String key = request.key().orElseThrow(() -> new InvalidGetRequestException("Missing key"));
 
@@ -62,17 +62,16 @@ final class S3ServiceDefaultImplementation implements S3Service {
                     .key(key)
                     .build());
 
-            S3GetResponse result = new S3GetResponse();
+
+            byte[] rawData;
             GetObjectResponse s3ObjectResponse = response.response();
-            result.setContentType(s3ObjectResponse.contentType());
             try {
-                byte[] rawData = response.readAllBytes();
-                result.setRawData(rawData);
-                result.setData(new String(rawData));
+                rawData = response.readAllBytes();
             } catch (IOException exception) {
                 throw new AWSException("Failed to read S3 object contents", exception);
             }
 
+            S3GetResponse result = new S3GetResponse(new String(rawData), rawData, s3ObjectResponse.contentType());
             return Optional.of(result);
         } catch (S3Exception exception) {
             throw new AWSException("Error when calling S3 service", exception);
